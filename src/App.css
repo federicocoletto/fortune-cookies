@@ -27,11 +27,24 @@
     height: 150%;
     display: flex;
     align-items: center;
-    margin: 3em 0 1em;
+    justify-self: center;
+    text-align: center;
+    margin: 3em 0;
+}
+
+@media screen and (min-width: 768px) {
+    .phrase-card {
+        text-align: center;
+        width: 700px;
+        margin: 4em auto;
+    }
+    .phrase-p {
+        font-size: 1.2em;
+    }
 }
 
 .phrase-p {
-    font-size: 1.3rem;
+    margin: 0 auto;
     padding: 1em;
     font-weight: 700;
 }
