@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+/* eslint-disable no-unused-vars */
 import './App.css'
+import phrases from './utils/phrases.json' 
+import getRandomFromArray from "./utils/getRandomFromArray";
+import PhraseCard from './components/PhraseCard';
+import { useState } from 'react';
+import ButtonPhrase from './components/ButtonPhrase';
+import AuthorPhrase from './components/AuthorPhrase';
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const initialPhrase = getRandomFromArray(phrases)
+	const [randomPhrase, setRandomPhrase] = useState(initialPhrase.phrase)
+	const [randomAuthor, setRandomAuthor] = useState(initialPhrase.author)
+
+	const bgArr = [1, 2, 3, 4]
+	const initialBG = getRandomFromArray(bgArr)
+	const [randomBG, setRandomBG] = useState(initialBG)
+	const styleBG = {
+		backgroundImage: `url('/images/fondo${randomBG}.jpg')`
+	}
+
+    return (
+        <div className='app' style={styleBG}>
+			<h1 className='title'>Galletas de la fortuna</h1>
+			<PhraseCard randomPhrase={randomPhrase} />
+			<ButtonPhrase 
+				setRandomPhrase={setRandomPhrase} 
+				setRandomBG={setRandomBG} 
+				setRandomAuthor={setRandomAuthor} />
+			<AuthorPhrase randomAuthor={randomAuthor} />
+        </div>
+    )
 }
 
 export default App
